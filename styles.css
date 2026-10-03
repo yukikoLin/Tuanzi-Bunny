@@ -19,7 +19,7 @@ html {
 
 body {
   margin: 0;
-  color: var(--ink);
+  color: #ffffff;
   background: var(--sky-bottom);
   font-family: "Hiragino Maru Gothic ProN", "Yu Gothic", "Noto Sans TC", sans-serif;
   -webkit-font-smoothing: antialiased;
