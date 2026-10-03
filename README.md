@@ -1,6 +1,6 @@
 # Tuanzi Bunny 官方網站
 
-小糰兔官方網站的第一幕 Hero 原型：柔和藍天、不同速度漂移的雲朵，以及使用原始 `float_bunny.psd` 匯出的透明 PNG 角色。
+小糰兔官方網站的第一幕 Hero 原型：手繪感藍天白雲背景，以及使用者繪製、帶柔和陰影的透明 PNG 角色。
 
 ## 本地預覽
 
@@ -24,7 +24,8 @@ python3 -m http.server 8000
 ├── styles.css              # 天空、雲朵、角色與響應式動畫
 ├── script.js               # 輕量 scroll parallax 基礎
 └── assets/
-    └── float-bunny.png     # PSD 匯出的透明角色素材
+    ├── hero-sky.png        # 寬幅手繪天空插畫
+    └── float-bunny.png     # 帶柔和陰影的透明角色素材
 ```
 
 後續場景可沿用 `.scene` 區塊，並用 `data-parallax` 調整元素的 scroll 速度；若改用 GSAP ScrollTrigger，也能保留目前的場景分層與 HTML 結構。
