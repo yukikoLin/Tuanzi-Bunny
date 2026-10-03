@@ -39,24 +39,109 @@ main {
   display: grid;
   grid-template-columns: minmax(2rem, 1fr) minmax(280px, 560px) minmax(320px, 700px) minmax(2rem, 1fr);
   align-items: center;
-  background: var(--sky-middle);
+  background: linear-gradient(
+    180deg,
+    #43a6ef 0%,
+    #66bff0 42%,
+    #91dbef 76%,
+    #d9eff0 118%
+  );
   overflow: hidden;
 }
 
-.sky-artwork {
+.cloud-field {
   position: absolute;
   inset: 0;
   z-index: -4;
   overflow: hidden;
+  pointer-events: none;
 }
 
-.sky-artwork img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  animation: sky-breathe 22s ease-in-out infinite alternate;
+.painted-cloud {
+  position: absolute;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
   will-change: transform;
+}
+
+.painted-cloud img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 15px 22px rgb(64 143 191 / 8%));
+}
+
+.cloud--1 {
+  top: -7%;
+  left: -7%;
+  width: clamp(15rem, 29vw, 31rem);
+  opacity: 0.58;
+  animation-name: cloud-drift-right;
+  animation-duration: 42s;
+}
+
+.cloud--1 img {
+  clip-path: inset(0 17% 0 0);
+  -webkit-mask-image: radial-gradient(ellipse 72% 68% at 50% 66%, #000 67%, transparent 94%);
+  mask-image: radial-gradient(ellipse 72% 68% at 50% 66%, #000 67%, transparent 94%);
+}
+
+.cloud--2 {
+  top: 8%;
+  right: 20%;
+  width: clamp(8rem, 13vw, 13rem);
+  opacity: 0.55;
+  filter: blur(0.4px);
+  animation-name: cloud-drift-left;
+  animation-duration: 51s;
+}
+
+.cloud--3 {
+  top: 28%;
+  left: 31%;
+  width: clamp(7rem, 11vw, 11rem);
+  opacity: 0.42;
+  filter: blur(0.7px);
+  animation-name: cloud-drift-right;
+  animation-duration: 58s;
+}
+
+.cloud--4 {
+  right: -11%;
+  bottom: -11%;
+  width: clamp(25rem, 42vw, 47rem);
+  opacity: 0.94;
+  animation-name: cloud-drift-left;
+  animation-duration: 32s;
+}
+
+.cloud--5 {
+  bottom: -7%;
+  left: -10%;
+  width: clamp(22rem, 38vw, 43rem);
+  opacity: 0.88;
+  animation-name: cloud-drift-right;
+  animation-duration: 37s;
+}
+
+.cloud--6 {
+  top: -12%;
+  right: -13%;
+  width: clamp(18rem, 31vw, 34rem);
+  opacity: 0.72;
+  animation-name: cloud-drift-left;
+  animation-duration: 46s;
+}
+
+.cloud--7 {
+  bottom: 15%;
+  left: 25%;
+  width: clamp(8rem, 14vw, 15rem);
+  opacity: 0.48;
+  filter: blur(0.5px);
+  animation-name: cloud-drift-right;
+  animation-duration: 49s;
 }
 
 .hero-copy {
@@ -201,9 +286,14 @@ h1 span::after {
   }
 }
 
-@keyframes sky-breathe {
-  from { transform: scale(1.035) translate3d(-0.4%, -0.2%, 0); }
-  to { transform: scale(1.075) translate3d(0.7%, 0.45%, 0); }
+@keyframes cloud-drift-right {
+  from { transform: translate3d(-18px, -3px, 0); }
+  to { transform: translate3d(30px, 7px, 0); }
+}
+
+@keyframes cloud-drift-left {
+  from { transform: translate3d(24px, 4px, 0); }
+  to { transform: translate3d(-26px, -6px, 0); }
 }
 
 @keyframes scroll-line {
@@ -242,9 +332,13 @@ h1 span::after {
     margin: -1rem 1vw -2rem auto;
   }
 
-  .sky-artwork img {
-    object-position: 53% center;
-  }
+  .cloud--1 { top: 2%; left: -24%; width: 60vw; }
+  .cloud--2 { top: 28%; right: -12%; width: 31vw; }
+  .cloud--3 { top: 42%; left: -6%; width: 27vw; }
+  .cloud--4 { right: -38%; bottom: -3%; width: 83vw; }
+  .cloud--5 { bottom: -2%; left: -43%; width: 86vw; }
+  .cloud--6 { top: 3%; right: -37%; width: 67vw; }
+  .cloud--7 { bottom: 27%; left: 7%; width: 29vw; }
 }
 
 @media (max-width: 480px) {
@@ -274,7 +368,7 @@ h1 span::after {
   }
 
   .bunny-float,
-  .sky-artwork img,
+  .painted-cloud,
   .scroll-line::after {
     animation: none;
   }

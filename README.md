@@ -1,6 +1,6 @@
 # Tuanzi Bunny 官方網站
 
-小糰兔官方網站的第一幕 Hero 原型：手繪感藍天白雲背景，以及使用者繪製、帶柔和陰影的透明 PNG 角色。
+小糰兔官方網站的第一幕 Hero 原型：柔和漸層天空、分層漂移的手繪雲朵，以及使用者繪製、帶柔和陰影的透明 PNG 角色。
 
 ## 本地預覽
 
@@ -24,7 +24,8 @@ python3 -m http.server 8000
 ├── styles.css              # 天空、雲朵、角色與響應式動畫
 ├── script.js               # 輕量 scroll parallax 基礎
 └── assets/
-    ├── hero-sky.png        # 寬幅手繪天空插畫
+    ├── clouds/             # 由使用者雲朵集合圖裁出的動畫素材
+    ├── hero-sky.png        # 前一版寬幅天空插畫（保留參考）
     └── float-bunny.png     # 帶柔和陰影的透明角色素材
 ```
 
