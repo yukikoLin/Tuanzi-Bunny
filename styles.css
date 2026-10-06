@@ -396,51 +396,54 @@ h1 span {
 .rainbow-arc {
   position: absolute;
 
-  bottom: -28vh;
-  left: 52%;
+  /* 整個彩虹中心往右下移 */
+  width: 150vw;
+  height: 150vw;
 
-  width: min(135vw, 1800px);
-  aspect-ratio: 2 / 1;
+  right: -62vw;
+  bottom: -86vw;
 
   background: radial-gradient(
-    ellipse at 50% 100%,
-    transparent 0 43%,
-    rgb(185 165 224 / 34%) 43% 47%,
-    rgb(139 190 229 / 36%) 47% 51%,
-    rgb(141 211 188 / 34%) 51% 55%,
-    rgb(247 224 143 / 37%) 55% 59%,
-    rgb(246 184 139 / 38%) 59% 63%,
-    rgb(238 151 158 / 36%) 63% 67%,
-    transparent 67% 100%
+    ellipse at center,
+    transparent 0 54%,
+
+    rgb(185 165 224 / 32%) 54% 56.5%,
+    rgb(139 190 229 / 34%) 56.5% 59%,
+    rgb(141 211 188 / 32%) 59% 61.5%,
+    rgb(247 224 143 / 35%) 61.5% 64%,
+    rgb(246 184 139 / 36%) 64% 66.5%,
+    rgb(238 151 158 / 34%) 66.5% 69%,
+
+    transparent 69% 100%
   );
 
   opacity: var(--rainbow-opacity);
   filter: blur(1.4px);
 
   transform:
-    translate3d(-50%, var(--rainbow-y), 0)
-    rotate(-11deg)
-    skewX(-8deg)
-    scaleX(1.12);
+    translateY(var(--rainbow-y))
+    rotate(-18deg)
+    scaleX(1.2)
+    scaleY(0.78);
 
-  transform-origin: 70% 100%;
+  transform-origin: center;
 
-  /* 左下近景慢慢消失 */
+  /* 左下端逐漸淡掉 */
   -webkit-mask-image: linear-gradient(
-    120deg,
+    135deg,
     transparent 0%,
-    rgb(0 0 0 / 15%) 16%,
-    rgb(0 0 0 / 55%) 32%,
-    #000 52%,
+    rgb(0 0 0 / 8%) 15%,
+    rgb(0 0 0 / 40%) 30%,
+    #000 48%,
     #000 100%
   );
 
   mask-image: linear-gradient(
-    120deg,
+    135deg,
     transparent 0%,
-    rgb(0 0 0 / 15%) 16%,
-    rgb(0 0 0 / 55%) 32%,
-    #000 52%,
+    rgb(0 0 0 / 8%) 15%,
+    rgb(0 0 0 / 40%) 30%,
+    #000 48%,
     #000 100%
   );
 
@@ -528,15 +531,17 @@ h1 span {
 
 @media (max-width: 820px) {
   .rainbow-arc {
-    bottom: -18vh;
-    left: 58%;
-    width: 170vw;
+    width: 220vw;
+    height: 220vw;
+
+    right: -105vw;
+    bottom: -125vw;
 
     transform:
-      translate3d(-50%, var(--rainbow-y), 0)
-      rotate(-9deg)
-      skewX(-6deg)
-      scaleX(1.08);
+      translateY(var(--rainbow-y))
+      rotate(-16deg)
+      scaleX(1.15)
+      scaleY(0.8);
   }
 }
 @media (prefers-reduced-motion: reduce) {
