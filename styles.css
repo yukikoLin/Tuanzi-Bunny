@@ -393,62 +393,105 @@ h1 span {
   pointer-events: none;
 }
 
-.rainbow-arc {
+.rainbow-field {
+  position: absolute;
+  inset: 0;
+  z-index: -4;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.rainbow-svg {
   position: absolute;
 
-  /* 整個彩虹中心往右下移 */
-  width: 150vw;
-  height: 150vw;
+  width: 140vw;
+  height: 110vh;
 
-  right: -62vw;
-  bottom: -86vw;
+  left: -18vw;
+  bottom: -18vh;
 
-  background: radial-gradient(
-    ellipse at center,
-    transparent 0 54%,
-
-    rgb(185 165 224 / 32%) 54% 56.5%,
-    rgb(139 190 229 / 34%) 56.5% 59%,
-    rgb(141 211 188 / 32%) 59% 61.5%,
-    rgb(247 224 143 / 35%) 61.5% 64%,
-    rgb(246 184 139 / 36%) 64% 66.5%,
-    rgb(238 151 158 / 34%) 66.5% 69%,
-
-    transparent 69% 100%
-  );
+  overflow: visible;
 
   opacity: var(--rainbow-opacity);
-  filter: blur(1.4px);
 
   transform:
-    translateY(var(--rainbow-y))
-    rotate(-18deg)
-    scaleX(1.2)
-    scaleY(0.78);
+  perspective(850px)
+  translateY(var(--rainbow-y))
+  rotateX(24deg)
+  rotateZ(-11deg)
+  skewX(-13deg)
+  scaleX(1.28);
 
-  transform-origin: center;
-
-  /* 左下端逐漸淡掉 */
-  -webkit-mask-image: linear-gradient(
-    135deg,
-    transparent 0%,
-    rgb(0 0 0 / 8%) 15%,
-    rgb(0 0 0 / 40%) 30%,
-    #000 48%,
-    #000 100%
-  );
-
-  mask-image: linear-gradient(
-    135deg,
-    transparent 0%,
-    rgb(0 0 0 / 8%) 15%,
-    rgb(0 0 0 / 40%) 30%,
-    #000 48%,
-    #000 100%
-  );
+  transform-origin: 8% 92%;
 
   will-change: opacity, transform;
 }
+.rainbow-group {
+  opacity: 0.92;
+}
+
+/* 彩虹每一條共用設定 */
+.rainbow-band {
+  fill: none;
+  stroke-linecap: round;
+}
+
+/* 最靠外側 */
+.rainbow-band--red {
+  stroke: rgb(238 151 158 / 65%);
+  stroke-width: 128;
+}
+
+.rainbow-band--orange {
+  stroke: rgb(246 184 139 / 62%);
+  stroke-width: 108;
+}
+
+.rainbow-band--yellow {
+  stroke: rgb(247 224 143 / 60%);
+  stroke-width: 88;
+}
+
+.rainbow-band--green {
+  stroke: rgb(141 211 188 / 58%);
+  stroke-width: 68;
+}
+
+.rainbow-band--blue {
+  stroke: rgb(139 190 229 / 58%);
+  stroke-width: 48;
+}
+
+.rainbow-band--purple {
+  stroke: rgb(185 165 224 / 56%);
+  stroke-width: 28;
+}
+
+.rainbow-band--red {
+  transform: translateY(-50px);
+}
+
+.rainbow-band--orange {
+  transform: translateY(-30px);
+}
+
+.rainbow-band--yellow {
+  transform: translateY(-10px);
+}
+
+.rainbow-band--green {
+  transform: translateY(10px);
+}
+
+.rainbow-band--blue {
+  transform: translateY(30px);
+}
+
+.rainbow-band--purple {
+  transform: translateY(50px);
+}
+
+
 
 .cloud-field {
   z-index: -3;
