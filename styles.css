@@ -395,25 +395,39 @@ h1 span {
 
 .rainbow-arc {
   position: absolute;
-  bottom: -12vh;
-  left: 50%;
-  width: min(118vw, 1500px);
-  aspect-ratio: 2 / 1;
+  inset: 0;
   background: radial-gradient(
-    ellipse at 50% 100%,
-    transparent 0 43%,
-    rgb(185 165 224 / 42%) 43% 47%,
-    rgb(139 190 229 / 42%) 47% 51%,
-    rgb(141 211 188 / 40%) 51% 55%,
-    rgb(247 224 143 / 43%) 55% 59%,
-    rgb(246 184 139 / 44%) 59% 63%,
-    rgb(238 151 158 / 44%) 63% 67%,
-    transparent 67% 100%
+    ellipse 165% 85% at 110% 110%,
+    transparent 0 60%,
+    rgb(185 165 224 / 40%) 60% 62.3%,
+    rgb(139 190 229 / 42%) 62.3% 64.6%,
+    rgb(141 211 188 / 40%) 64.6% 66.9%,
+    rgb(247 224 143 / 44%) 66.9% 69.2%,
+    rgb(246 184 139 / 45%) 69.2% 71.5%,
+    rgb(238 151 158 / 44%) 71.5% 73.8%,
+    transparent 73.8% 100%
   );
   opacity: var(--rainbow-opacity);
-  filter: blur(1.4px);
-  transform: translate3d(-50%, var(--rainbow-y), 0);
-  transform-origin: 50% 100%;
+  filter: blur(1.1px);
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgb(0 0 0 / 12%) 13%,
+    rgb(0 0 0 / 62%) 30%,
+    #000 48%,
+    #000 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgb(0 0 0 / 12%) 13%,
+    rgb(0 0 0 / 62%) 30%,
+    #000 48%,
+    #000 100%
+  );
+  transform: perspective(1000px) translate3d(0, var(--rainbow-y), 0)
+    rotateY(-5deg) rotateZ(-1deg) scale(1.025);
+  transform-origin: 0 100%;
   will-change: opacity, transform;
 }
 
@@ -502,8 +516,19 @@ h1 span {
   }
 
   .rainbow-arc {
-    bottom: -5vh;
-    width: 165vw;
+    background: radial-gradient(
+      ellipse 180% 75% at 118% 110%,
+      transparent 0 60%,
+      rgb(185 165 224 / 40%) 60% 62.3%,
+      rgb(139 190 229 / 42%) 62.3% 64.6%,
+      rgb(141 211 188 / 40%) 64.6% 66.9%,
+      rgb(247 224 143 / 44%) 66.9% 69.2%,
+      rgb(246 184 139 / 45%) 69.2% 71.5%,
+      rgb(238 151 158 / 44%) 71.5% 73.8%,
+      transparent 73.8% 100%
+    );
+    transform: perspective(800px) translate3d(0, var(--rainbow-y), 0)
+      rotateY(-4deg) rotateZ(-0.5deg) scale(1.02);
   }
 }
 
