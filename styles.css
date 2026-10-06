@@ -395,25 +395,58 @@ h1 span {
 
 .rainbow-arc {
   position: absolute;
-  bottom: -12vh;
-  left: 50%;
-  width: min(118vw, 1500px);
+
+  /* 讓彩虹比畫面大，才會有「從畫面外延伸進來」的感覺 */
+  bottom: -32vh;
+  left: 58%;
+  width: min(145vw, 1900px);
   aspect-ratio: 2 / 1;
+
   background: radial-gradient(
     ellipse at 50% 100%,
     transparent 0 43%,
-    rgb(185 165 224 / 42%) 43% 47%,
-    rgb(139 190 229 / 42%) 47% 51%,
-    rgb(141 211 188 / 40%) 51% 55%,
-    rgb(247 224 143 / 43%) 55% 59%,
-    rgb(246 184 139 / 44%) 59% 63%,
-    rgb(238 151 158 / 44%) 63% 67%,
+    rgb(185 165 224 / 36%) 43% 47%,
+    rgb(139 190 229 / 38%) 47% 51%,
+    rgb(141 211 188 / 36%) 51% 55%,
+    rgb(247 224 143 / 39%) 55% 59%,
+    rgb(246 184 139 / 40%) 59% 63%,
+    rgb(238 151 158 / 38%) 63% 67%,
     transparent 67% 100%
   );
+
   opacity: var(--rainbow-opacity);
-  filter: blur(1.4px);
-  transform: translate3d(-50%, var(--rainbow-y), 0);
-  transform-origin: 50% 100%;
+  filter: blur(1.5px);
+
+  /* 主要的透視感在這裡 */
+  transform:
+    perspective(900px)
+    translate3d(-50%, var(--rainbow-y), 0)
+    rotateX(8deg)
+    rotateY(-28deg)
+    rotateZ(-10deg)
+    scaleX(1.15);
+
+  transform-origin: 75% 100%;
+
+  /* 讓左下那端慢慢 fade out */
+  -webkit-mask-image: linear-gradient(
+    125deg,
+    transparent 0%,
+    rgb(0 0 0 / 10%) 14%,
+    rgb(0 0 0 / 45%) 30%,
+    #000 50%,
+    #000 100%
+  );
+
+  mask-image: linear-gradient(
+    125deg,
+    transparent 0%,
+    rgb(0 0 0 / 10%) 14%,
+    rgb(0 0 0 / 45%) 30%,
+    #000 50%,
+    #000 100%
+  );
+
   will-change: opacity, transform;
 }
 
