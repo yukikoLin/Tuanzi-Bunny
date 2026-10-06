@@ -1,26 +1,78 @@
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const parallaxItems = [...document.querySelectorAll("[data-parallax]")];
+const journey = document.querySelector(".sky-journey");
+const skyScene = journey?.querySelector(".scene--sky");
 
 let ticking = false;
 
-function updateParallax() {
-  const scrollY = window.scrollY;
+function clamp(value, min = 0, max = 1) {
+  return Math.min(max, Math.max(min, value));
+}
 
-  parallaxItems.forEach((item) => {
-    const speed = Number(item.dataset.parallax || 0);
-    item.style.setProperty("--parallax-y", `${scrollY * speed}px`);
-  });
+function smoothRange(progress, start, end) {
+  const value = clamp((progress - start) / (end - start));
+  return value * value * (3 - 2 * value);
+}
+
+function clearScrollStyles() {
+  [
+    "--far-cloud-y",
+    "--mid-cloud-y",
+    "--front-cloud-y",
+    "--far-cloud-opacity",
+    "--mid-cloud-opacity",
+    "--front-cloud-opacity",
+    "--rainbow-opacity",
+    "--rainbow-y",
+    "--bunny-scroll-y",
+    "--bunny-scroll-rotate"
+  ].forEach((property) => skyScene?.style.removeProperty(property));
+}
+
+function updateSkyJourney() {
+  if (!journey || !skyScene) {
+    ticking = false;
+    return;
+  }
+
+  if (reducedMotion.matches) {
+    clearScrollStyles();
+    ticking = false;
+    return;
+  }
+
+  const travelDistance = Math.max(journey.offsetHeight - window.innerHeight, 1);
+  const progress = clamp(-journey.getBoundingClientRect().top / travelDistance);
+
+  const frontFade = 1 - smoothRange(progress, 0.3, 0.45);
+  const rainbowReveal = smoothRange(progress, 0.45, 0.78);
+  const midFade = 1 - smoothRange(progress, 0.6, 0.75);
+  const farFade = 1 - 0.48 * smoothRange(progress, 0.75, 1);
+
+  skyScene.style.setProperty("--far-cloud-y", `${-6 * progress}vh`);
+  skyScene.style.setProperty("--mid-cloud-y", `${-16 * progress}vh`);
+  skyScene.style.setProperty("--front-cloud-y", `${-32 * progress}vh`);
+  skyScene.style.setProperty("--far-cloud-opacity", farFade.toFixed(3));
+  skyScene.style.setProperty("--mid-cloud-opacity", midFade.toFixed(3));
+  skyScene.style.setProperty("--front-cloud-opacity", frontFade.toFixed(3));
+  skyScene.style.setProperty("--rainbow-opacity", rainbowReveal.toFixed(3));
+  skyScene.style.setProperty("--rainbow-y", `${18 * (1 - rainbowReveal)}vh`);
+  skyScene.style.setProperty("--bunny-scroll-y", `${-12 * progress}px`);
+  skyScene.style.setProperty(
+    "--bunny-scroll-rotate",
+    `${(Math.sin(progress * Math.PI * 2) * 1.2).toFixed(2)}deg`
+  );
 
   ticking = false;
 }
 
-function requestParallaxUpdate() {
-  if (reducedMotion.matches || ticking) return;
+function requestSkyUpdate() {
+  if (ticking) return;
   ticking = true;
-  window.requestAnimationFrame(updateParallax);
+  window.requestAnimationFrame(updateSkyJourney);
 }
 
-window.addEventListener("scroll", requestParallaxUpdate, { passive: true });
-window.addEventListener("resize", requestParallaxUpdate);
+window.addEventListener("scroll", requestSkyUpdate, { passive: true });
+window.addEventListener("resize", requestSkyUpdate);
+reducedMotion.addEventListener("change", requestSkyUpdate);
 
-if (!reducedMotion.matches) updateParallax();
+requestSkyUpdate();
