@@ -395,13 +395,21 @@ h1 span {
 
 .rainbow-image {
   position: absolute;
-  width: 100%;
+  width: 112%;
   max-width: none;
   height: auto;
-  left: 0%;
-  bottom: -30%;
+
+  left: -6%;
+  bottom: -34%;
+
   opacity: var(--rainbow-opacity, 0);
-  transform: translate3d(0, var(--rainbow-y, 18vh), 0);
+
+  transform:
+    translate3d(0, var(--rainbow-y, 18vh), 0)
+    scale(var(--rainbow-scale, 0.96));
+
+  transform-origin: 65% 60%;
+
   will-change: opacity, transform;
 }
 
