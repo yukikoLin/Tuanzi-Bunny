@@ -23,6 +23,7 @@ function clearScrollStyles() {
     "--front-cloud-opacity",
     "--rainbow-opacity",
     "--rainbow-y",
+    "--rainbow-scale",
     "--bunny-scroll-y",
     "--bunny-scroll-rotate"
   ].forEach((property) => skyScene?.style.removeProperty(property));
@@ -55,8 +56,15 @@ function updateSkyJourney() {
   skyScene.style.setProperty("--mid-cloud-opacity", midFade.toFixed(3));
   skyScene.style.setProperty("--front-cloud-opacity", frontFade.toFixed(3));
   skyScene.style.setProperty("--rainbow-opacity", rainbowReveal.toFixed(3));
-  skyScene.style.setProperty("--rainbow-y", `${18 * (1 - rainbowReveal)}vh`);
-  skyScene.style.setProperty("--bunny-scroll-y", `${-12 * progress}px`);
+skyScene.style.setProperty("--rainbow-y", `${18 * (1 - rainbowReveal)}vh`);
+
+// 彩虹隨 scroll 微微放大，製造靠近感
+skyScene.style.setProperty(
+  "--rainbow-scale",
+  `${0.96 + rainbowReveal * 0.06}`
+);
+
+skyScene.style.setProperty("--bunny-scroll-y", `${-12 * progress}px`);
   skyScene.style.setProperty(
     "--bunny-scroll-rotate",
     `${(Math.sin(progress * Math.PI * 2) * 1.2).toFixed(2)}deg`
