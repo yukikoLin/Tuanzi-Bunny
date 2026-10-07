@@ -395,11 +395,11 @@ h1 span {
 
 .rainbow-image {
   position: absolute;
-  width: 112%;
+  width: 100%;
   max-width: none;
   height: auto;
-  left: -6%;
-  bottom: -4%;
+  left: 0%;
+  bottom: -30%;
   opacity: var(--rainbow-opacity, 0);
   transform: translate3d(0, var(--rainbow-y, 18vh), 0);
   will-change: opacity, transform;
@@ -488,7 +488,7 @@ h1 span {
   .rainbow-image {
     width: 170%;
     left: -35%;
-    bottom: 12%;
+    bottom: 0;
   }
 }
 @media (prefers-reduced-motion: reduce) {
