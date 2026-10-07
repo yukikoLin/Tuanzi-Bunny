@@ -61,7 +61,7 @@ skyScene.style.setProperty("--rainbow-y", `${18 * (1 - rainbowReveal)}vh`);
 // 彩虹隨 scroll 微微放大，製造靠近感
 skyScene.style.setProperty(
   "--rainbow-scale",
-  `${0.96 + rainbowReveal * 0.06}`
+  `${0.86 + rainbowReveal * 0.14}`
 );
 
 skyScene.style.setProperty("--bunny-scroll-y", `${-12 * progress}px`);
