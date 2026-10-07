@@ -40,11 +40,11 @@ function updateSkyJourney() {
     return;
   }
 
-  const travelDistance = Math.max(journey.offsetHeight - window.innerHeight, 1);
+  const travelDistance = Math.max(journey.offsetHeight - skyScene.offsetHeight, 1);
   const progress = clamp(-journey.getBoundingClientRect().top / travelDistance);
 
   const frontFade = 1 - smoothRange(progress, 0.3, 0.45);
-  const rainbowReveal = smoothRange(progress, 0.45, 0.78);
+  const rainbowReveal = smoothRange(progress, 0.15, 0.78);
   const midFade = 1 - smoothRange(progress, 0.6, 0.75);
   const farFade = 1 - 0.48 * smoothRange(progress, 0.75, 1);
 
